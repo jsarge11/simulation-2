@@ -1,10 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const massive = require('massive')
+require('dotenv').config()
 
+
+let port = 4000;
 let app = express();
 
 app.use(bodyParser.json());
 
+massive(process.env.CONNECTION_STRING).then(connection => {
+ app.set('db', connection);
+ app.listen(port, console.log('simulating on port ' + port))
+})
 
-let port = 4000;
-app.listen(port, console.log('simulating on port ' + port))
