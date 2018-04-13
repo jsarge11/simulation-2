@@ -6,3 +6,10 @@ create table houses (
     state varchar,
     zip varchar
 )
+
+---------- alter table SQL
+
+alter table houses
+add column image varchar, 
+add column monthly_mortgage varchar, 
+add column desired_rent decimal;

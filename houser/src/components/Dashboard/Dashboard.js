@@ -38,7 +38,7 @@ deleteHouse = (id) => {
   })
  return (
   <div>
-   <Link to='/wizard'><button>Add New Property</button></Link>
+   <Link to='/wizard/stepone'><button>Add New Property</button></Link>
    {houses}
   </div>
   )
