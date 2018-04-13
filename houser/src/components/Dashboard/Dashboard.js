@@ -2,8 +2,9 @@ import React from 'react'
 import House from '../House/House'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
  constructor() {
   super() 
 
@@ -26,6 +27,14 @@ deleteHouse = (id) => {
 }
 
  render() {
+  let user = '';
+
+  if(this.props.user === '') {
+   user = 'Not Logged In.';
+  }
+  else {
+   user = this.props.user;
+  }
 
   let houses = this.state.curr_houses.map((house, i) => {
    return (
@@ -38,9 +47,17 @@ deleteHouse = (id) => {
   })
  return (
   <div>
-   <Link to='/wizard/stepone'><button>Add New Property</button></Link>
+   <h1>{user}</h1>
+   <Link to={`/wizard/stepone/${user}`}><button>Add New Property</button></Link>
    {houses}
   </div>
   )
  }
 }
+function mapStateToProps(state) {
+ let { user } = state;
+ return {
+  user
+ }
+}
+export default connect(mapStateToProps)(Dashboard)

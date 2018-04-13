@@ -7,6 +7,7 @@ let initialState = {
  imageurl: '',
  monthly_mortgage: 0,
  desired_rent: 0,
+ user: ''
 }
 
 const UPDATE_INFO = 'UPDATE_INFO'

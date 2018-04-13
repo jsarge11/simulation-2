@@ -45,11 +45,12 @@ class StepOne extends React.Component {
  }
  
  render() {
+  
   let {name, address, city, state, zip} = this.state;
-
+ 
   return (
-
-  <div>
+   <div>
+   <h1>{this.props.match.params.user}</h1>
    <input type="text" value={this.state.name} placeholder="name ... " onChange={(e)=>this.updateName(e.target.value)} />
    <input type="text" value={this.state.address} placeholder="address ... " onChange={(e)=>this.updateAddress(e.target.value)} />
    <input type="text" value={this.state.city} placeholder="city ... " onChange={(e)=>this.updateCity(e.target.value)} />
@@ -58,7 +59,7 @@ class StepOne extends React.Component {
    <br/>
    
    <Link to='/'><button>Go Back</button></Link>
-   <Link to='/wizard/steptwo'><button onClick={()=>this.props.updateInfo(name, address, city, state, zip)}>Next Step</button></Link>
+   <Link to={`/wizard/steptwo/${this.props.match.params.user}`}><button onClick={()=>this.props.updateInfo(name, address, city, state, zip)}>Next Step</button></Link>
   </div>
   )
  }

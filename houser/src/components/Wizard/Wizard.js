@@ -11,9 +11,9 @@ class Wizard extends React.Component {
  render() {
   return (
   <div>
-   <Route path="/wizard/stepone" component={StepOne}/>
-   <Route path="/wizard/steptwo" component={StepTwo}/>
-   <Route path="/wizard/stepthree" component={StepThree}/>
+   <Route path="/wizard/stepone/:user" component={StepOne}/>
+   <Route path="/wizard/steptwo/:user" component={StepTwo}/>
+   <Route path="/wizard/stepthree/:user" component={StepThree}/>
    <Link to='/'><button onClick={()=>this.props.cancel()}> Cancel </button></Link>
   </div>
   )

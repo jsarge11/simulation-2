@@ -51,10 +51,11 @@ class StepThree extends React.Component {
   return (
 
   <div>
+   <h1>{this.props.match.params.user}</h1>
    <input type="text" value={this.state.monthly_mortgage} placeholder="monthly mortgage ... " onChange={(e)=>this.updateMonthlyMortgage(e.target.value)} />
    <input type="text" value={this.state.desired_rent} placeholder="desired rent ... " onChange={(e)=>this.updateDesiredRent(e.target.value)} /><br/>
 
-  <Link to='/wizard/steptwo'><button onClick={()=>this.props.updateFinance(this.state.monthly_mortgage, this.state.desired_rent)}>Go Back</button></Link>
+  <Link to={`/wizard/steptwo/${this.props.match.params.user}`}><button onClick={()=>this.props.updateFinance(this.state.monthly_mortgage, this.state.desired_rent)}>Go Back</button></Link>
   <Link to='/'><button onClick={()=>this.createHouse(name, address, city, state, zip, imageurl, monthly_mortgage, desired_rent)}> Complete </button></Link>
   </div>
   )
@@ -70,7 +71,8 @@ function mapStateToProps(state) {
   zip,
   imageurl,
   monthly_mortgage,
-  desired_rent
+  desired_rent,
+
  }
 }
 export default connect(mapStateToProps, {updateFinance, cancel})(StepThree)

@@ -24,11 +24,13 @@ class StepTwo extends React.Component {
  }
  
  render() {
+  // if (this.props.user)
   return (
   <div>
+   <h1>{this.props.match.params.user}</h1>
    <input type="text" value={this.state.imageurl} placeholder="imgurl ... " onChange={(e)=>this.updateImage(e.target.value)} /><br/>
-   <Link to='/wizard/stepone'><button onClick={()=>this.props.updateImg(this.state.imageurl)}>Go Back</button></Link>
-   <Link to='/wizard/stepthree'><button onClick={()=>this.props.updateImg(this.state.imageurl)}>Next Step</button></Link>
+   <Link to={`/wizard/stepone/${this.props.match.params.user}`}><button onClick={()=>this.props.updateImg(this.state.imageurl)}>Go Back</button></Link>
+   <Link to={`/wizard/stepthree/${this.props.match.params.user}`}><button onClick={()=>this.props.updateImg(this.state.imageurl)}>Next Step</button></Link>
   </div>
   )
  }
@@ -36,7 +38,7 @@ class StepTwo extends React.Component {
 function mapStateToProps(state) {
  let { imageurl } = state;
  return {
-  imageurl
+  imageurl,
  }
 }
 

@@ -24,5 +24,3 @@ module.exports = {
    })
   }
 }
-
-//arrow functions but not import
