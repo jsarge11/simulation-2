@@ -25,10 +25,10 @@ export function updateImg(image_url) {
   payload: image_url
  }
 }
-export function updateFinance(monthlymortgage, desiredrent) {
+export function updateFinance(monthly_mortgage, desired_rent) {
  return {
   type: UPDATE_FINANCE,
-  payload: {monthlymortgage, desiredrent}
+  payload: {monthly_mortgage,desired_rent}
  }
 }
 
@@ -42,7 +42,7 @@ export default function reducer(state = initialState, action) {
                                     zip: action.payload.zip,   
                                    })
   case(UPDATE_IMAGE) :
-   return Object.assign({}, state, {image_url: action.payload})
+   return Object.assign({}, state, {imageurl: action.payload})
   case(UPDATE_FINANCE) :
    return Object.assign({}, state, {monthly_mortgage: action.payload.monthly_mortgage, desired_rent: action.payload.desired_rent})
 

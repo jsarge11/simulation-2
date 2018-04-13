@@ -17,7 +17,16 @@ class StepThree extends React.Component {
   }
  }
 
+ componentDidMount() {
+  console.log('setting state on step three')
+  this.setState({ 
+   monthly_mortgage: this.props.monthly_mortgage,
+   desired_rent: this.props.desired_rent
+  })
+ }
+
  updateMonthlyMortgage(value) {
+
   this.setState({monthly_mortgage: value })
  }
  updateDesiredRent(value) {
@@ -40,7 +49,7 @@ class StepThree extends React.Component {
    <input type="text" value={this.state.monthly_mortgage} placeholder="monthly mortgage ... " onChange={(e)=>this.updateMonthlyMortgage(e.target.value)} />
    <input type="text" value={this.state.desired_rent} placeholder="desired rent ... " onChange={(e)=>this.updateDesiredRent(e.target.value)} /><br/>
 
-  <Link to='/wizard/steptwo'><button onClick={this.props.updateFinance(this.state.monthly_mortgage, this.state.desired_rent)}>Go Back</button></Link>
+  <Link to='/wizard/steptwo'><button onClick={()=>this.props.updateFinance(this.state.monthly_mortgage, this.state.desired_rent)}>Go Back</button></Link>
   <button onClick={()=>this.createHouse(this.state.name, this.state.address, this.state.city, this.state.state, this.state.zip)}> Complete </button>
   </div>
   )

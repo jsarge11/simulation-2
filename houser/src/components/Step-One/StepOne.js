@@ -18,6 +18,16 @@ class StepOne extends React.Component {
    zip: '',
   }
  }
+ componentDidMount() {
+  console.log('setting state on step one')
+  this.setState({ 
+   name: this.props.name,
+   address: this.props.address,
+   city: this.props.city,
+   state: this.props.usstate,
+   zip: this.props.zip,
+  })
+ }
  updateName(value) {
   this.setState({name: value })
  }
