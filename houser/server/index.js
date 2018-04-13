@@ -11,6 +11,7 @@ let app = express();
 app.use(bodyParser.json());
 app.get('/api/houses', ctrl.read);
 app.post('/api/createhouse', ctrl.create)
+app.delete('/api/deletehouse', ctrl.delete)
 
 massive(process.env.CONNECTION_STRING).then(connection => {
  app.set('db', connection);

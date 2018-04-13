@@ -8,7 +8,7 @@ export default function House(props) {
    {props.curr_house.city} <br/>
    {props.curr_house.state} <br/>
    {props.curr_house.zip} <br/>
-  <button>Delete House</button>
+  <button onClick={()=>props.deleteHouse(props.curr_house.house_id)}>Delete House</button>
   </div>
  )
 }

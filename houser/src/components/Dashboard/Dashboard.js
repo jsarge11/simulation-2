@@ -8,7 +8,8 @@ export default class Dashboard extends React.Component {
   super() 
 
   this.state = {
-   curr_houses: []
+   curr_houses: [],
+   redirect: false
   }
  }
 
@@ -17,11 +18,21 @@ export default class Dashboard extends React.Component {
    this.setState({curr_houses : res.data})
   })
  }
+
+deleteHouse = (id) => {
+ axios.delete('/api/deletehouse?id=' + id).then(res => {
+  this.setState({curr_houses: res.data});
+ })
+}
+
  render() {
+
   let houses = this.state.curr_houses.map((house, i) => {
    return (
     <div key={ i + house }>
-     <House curr_house={house}/>    
+     <House curr_house={house}
+            deleteHouse={this.deleteHouse}
+     />    
     </div>
    );
   })

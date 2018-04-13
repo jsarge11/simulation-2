@@ -13,6 +13,14 @@ module.exports = {
    db.create_house(name, address, city, state, zip).then (house => {
     res.status(200).send ( house );
    }) 
+  },
+  delete: (req, res, next) => {
+   const db = req.app.get('db');
+   let { id } = req.query;
+
+   db.delete_house(id).then(houses => {
+    res.status(200).send(houses);
+   })
   }
 }
 
