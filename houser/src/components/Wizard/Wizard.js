@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
 
 export default class Wizard extends React.Component {
  constructor() {
@@ -10,7 +11,8 @@ export default class Wizard extends React.Component {
    address: '',
    city: '',
    state: '',
-   zip: ''
+   zip: '',
+   redirect: false,
   }
  }
  updateName(value) {
@@ -28,18 +30,29 @@ export default class Wizard extends React.Component {
  updateZip(value) {
   this.setState({zip: value })
  }
+ createHouse(name, address, city, state, zip) {
+  axios.post('/api/createhouse/', {name, address, city, state, zip}).then (res => {
+   this.setState({redirect: true})
+  })
+ }
  
  render() {
+  if (this.state.redirect) {
+   return <Redirect push to="/"/>
+  }
+
   return (
+
   <div>
    Wizard
-   <input type="text" value={this.state.name} placeholder="enter here ... " onChange={()=>this.updateName()} />
-   <input type="text" value={this.state.address} placeholder="enter here ... " onChange={()=>this.updateAddress()} />
-   <input type="text" value={this.state.city} placeholder="enter here ... " onChange={()=>this.updateCity()} />
-   <input type="text" value={this.state.state} placeholder="enter here ... " onChange={()=>this.updateState()} />
-   <input type="text" value={this.state.zip} placeholder="enter here ... " onChange={()=>this.updateZip()} />
+   <input type="text" value={this.state.name} placeholder="enter here ... " onChange={(e)=>this.updateName(e.target.value)} />
+   <input type="text" value={this.state.address} placeholder="enter here ... " onChange={(e)=>this.updateAddress(e.target.value)} />
+   <input type="text" value={this.state.city} placeholder="enter here ... " onChange={(e)=>this.updateCity(e.target.value)} />
+   <input type="text" value={this.state.state} placeholder="enter here ... " onChange={(e)=>this.updateState(e.target.value)} />
+   <input type="text" value={this.state.zip} placeholder="enter here ... " onChange={(e)=>this.updateZip(e.target.value)} />
    
-   <Link to='/'><button>Cancel</button></Link>
+  <button onClick={()=>this.createHouse(this.state.name, this.state.address, this.state.city, this.state.state, this.state.zip)}> Complete </button>
+   <Link to='/'><button> Cancel </button></Link>
   </div>
   )
  }

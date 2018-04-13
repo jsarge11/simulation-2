@@ -9,7 +9,8 @@ let port = 4000;
 let app = express();
 
 app.use(bodyParser.json());
-app.get('/api/houses', ctrl.create);
+app.get('/api/houses', ctrl.read);
+app.post('/api/createhouse', ctrl.create)
 
 massive(process.env.CONNECTION_STRING).then(connection => {
  app.set('db', connection);
