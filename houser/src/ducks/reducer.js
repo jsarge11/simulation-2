@@ -44,12 +44,13 @@ export function cancel() {
 export default function reducer(state = initialState, action) {
  switch(action.type) {
   case(UPDATE_INFO) :
-   return Object.assign({}, state, {name: action.payload.name, 
-                                    address: action.payload.address, 
-                                    city: action.payload.city,
-                                    usstate : action.payload.usstate,
-                                    zip: action.payload.zip,   
-                                   })
+   return Object.assign({}, state, 
+   {name: action.payload.name, 
+   address: action.payload.address, 
+   city: action.payload.city,
+   usstate : action.payload.usstate,
+   zip: action.payload.zip,   
+  })
   case(UPDATE_IMAGE) :
    return Object.assign({}, state, {imageurl: action.payload})
   case(UPDATE_FINANCE) :

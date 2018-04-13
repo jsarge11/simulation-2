@@ -1,7 +1,8 @@
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { updateFinance } from '../../ducks/reducer'
+import { updateFinance, cancel } from '../../ducks/reducer'
+
 import axios from 'axios'
 
 
@@ -32,16 +33,20 @@ class StepThree extends React.Component {
  updateDesiredRent(value) {
   this.setState({desired_rent: value })
  }
- createHouse(name, address, city, state, zip) {
-  axios.post('/api/createhouse/', {name, address, city, state, zip}).then (res => {
-   this.setState({redirect: true})
+ createHouse(name, address, city, state, zip, imageurl, monthly_mortgage, desired_rent) {
+  axios.post('/api/createhouse/', {name, address, city, state, zip, imageurl, monthly_mortgage, desired_rent}).then (res => {
+   this.props.cancel();
   })
+
+
  }
  
  render() {
   if (this.state.redirect) {
    return <Redirect push to="/"/>
   }
+  let { name, address, city, state, zip, imageurl } = this.props;
+  let { monthly_mortgage, desired_rent } = this.state;
 
   return (
 
@@ -50,7 +55,7 @@ class StepThree extends React.Component {
    <input type="text" value={this.state.desired_rent} placeholder="desired rent ... " onChange={(e)=>this.updateDesiredRent(e.target.value)} /><br/>
 
   <Link to='/wizard/steptwo'><button onClick={()=>this.props.updateFinance(this.state.monthly_mortgage, this.state.desired_rent)}>Go Back</button></Link>
-  <button onClick={()=>this.createHouse(this.state.name, this.state.address, this.state.city, this.state.state, this.state.zip)}> Complete </button>
+  <Link to='/'><button onClick={()=>this.createHouse(name, address, city, state, zip, imageurl, monthly_mortgage, desired_rent)}> Complete </button></Link>
   </div>
   )
  }
@@ -68,4 +73,4 @@ function mapStateToProps(state) {
   desired_rent
  }
 }
-export default connect(mapStateToProps, {updateFinance})(StepThree)
+export default connect(mapStateToProps, {updateFinance, cancel})(StepThree)

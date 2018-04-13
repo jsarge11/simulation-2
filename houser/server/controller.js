@@ -8,9 +8,10 @@ module.exports = {
  },
  create: (req, res, next) => {
    const db = req.app.get('db');
-   let { name, address, city, state, zip} = req.body;
+   console.log(req.body);
+   let { name, address, city, state, zip, imageurl, monthly_mortgage, desired_rent} = req.body;
 
-   db.create_house(name, address, city, state, zip).then (house => {
+   db.create_house(name, address, city, state, zip, imageurl, monthly_mortgage, desired_rent).then (house => {
     res.status(200).send ( house );
    }) 
   },

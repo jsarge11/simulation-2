@@ -8,6 +8,10 @@ export default function House(props) {
    {props.curr_house.city} <br/>
    {props.curr_house.state} <br/>
    {props.curr_house.zip} <br/>
+   {props.curr_house.imageurl} <br/>
+   {props.curr_house.monthly_mortgage} <br/>
+   {props.curr_house.desired_rent} <br/>
+   
   <button onClick={()=>props.deleteHouse(props.curr_house.house_id)}>Delete House</button>
   </div>
  )
