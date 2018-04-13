@@ -12,6 +12,7 @@ let initialState = {
 const UPDATE_INFO = 'UPDATE_INFO'
 const UPDATE_IMAGE = 'UPDATE_IMAGE'
 const UPDATE_FINANCE = 'UPDATE_FINANCE'
+const CANCEL = 'CANCEL'
 
 export function updateInfo(name, address, city, usstate, zip) {
  return {
@@ -31,6 +32,14 @@ export function updateFinance(monthly_mortgage, desired_rent) {
   payload: {monthly_mortgage,desired_rent}
  }
 }
+export function cancel() {
+ console.log('calling cancel');
+
+ return {
+  type: CANCEL,
+  payload: initialState
+ }
+}
 
 export default function reducer(state = initialState, action) {
  switch(action.type) {
@@ -45,6 +54,8 @@ export default function reducer(state = initialState, action) {
    return Object.assign({}, state, {imageurl: action.payload})
   case(UPDATE_FINANCE) :
    return Object.assign({}, state, {monthly_mortgage: action.payload.monthly_mortgage, desired_rent: action.payload.desired_rent})
+  case(CANCEL) :
+   return Object.assign(state, action.payload)
 
   default:
    return state;
