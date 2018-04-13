@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { updateInfo } from '../../ducks/reducer'
 
 
 
@@ -34,7 +35,7 @@ class StepOne extends React.Component {
  }
  
  render() {
-  console.log(this.props);
+  let {name, address, city, state, zip} = this.state;
 
   return (
 
@@ -47,7 +48,7 @@ class StepOne extends React.Component {
    <br/>
    
    <Link to='/'><button>Go Back</button></Link>
-   <Link to='/wizard/steptwo'><button>Next Step</button></Link>
+   <Link to='/wizard/steptwo'><button onClick={()=>this.props.updateInfo(name, address, city, state, zip)}>Next Step</button></Link>
   </div>
   )
  }
@@ -63,4 +64,4 @@ function mapStateToProps(state) {
  }
 }
 
-export default connect(mapStateToProps)(StepOne)
+export default connect(mapStateToProps, { updateInfo })(StepOne)
