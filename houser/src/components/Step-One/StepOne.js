@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-export default class StepOne extends React.Component {
+import { connect } from 'react-redux'
+
+
+
+class StepOne extends React.Component {
 
  constructor() {
   super()
@@ -30,6 +34,7 @@ export default class StepOne extends React.Component {
  }
  
  render() {
+  console.log(this.props);
 
   return (
 
@@ -47,3 +52,15 @@ export default class StepOne extends React.Component {
   )
  }
 }
+function mapStateToProps(state) {
+ let {name, address, city, usstate, zip} = state;
+ return {
+  name,
+  address,
+  city,
+  usstate,
+  zip
+ }
+}
+
+export default connect(mapStateToProps)(StepOne)
