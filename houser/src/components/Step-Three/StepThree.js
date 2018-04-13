@@ -1,8 +1,9 @@
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
-export default class StepOne extends React.Component {
+class StepThree extends React.Component {
 
  constructor() {
   super()
@@ -43,3 +44,11 @@ export default class StepOne extends React.Component {
   )
  }
 }
+function mapStateToProps(state) {
+ let { monthly_mortgage, desired_rent } = state;
+ return {
+  monthly_mortgage,
+  desired_rent
+ }
+}
+export default connect(mapStateToProps)(StepThree)

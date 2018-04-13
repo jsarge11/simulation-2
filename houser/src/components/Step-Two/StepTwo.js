@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default class StepOne extends React.Component {
+
+class StepTwo extends React.Component {
 
  constructor() {
   super()
@@ -25,3 +27,12 @@ export default class StepOne extends React.Component {
   )
  }
 }
+function mapStateToProps(state) {
+ let { imageurl } = state;
+ return {
+  imageurl
+ }
+}
+
+export default connect(mapStateToProps)(StepTwo)
+
